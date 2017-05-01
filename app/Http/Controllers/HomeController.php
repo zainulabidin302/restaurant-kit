@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
+
 
 class HomeController extends Controller
 {
@@ -26,9 +30,5 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function api_auth()
-    {
-        return view('auth.api');
-    }
 
 }

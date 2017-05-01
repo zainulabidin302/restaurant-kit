@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Restaurant Kit') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -21,41 +21,30 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+    <div id="app ">
+        
+        <div class="container-fluid bg-default sec">
+            <div class="col-xs-12 col-sm-1">
+               
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                 
 
+                    
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                           <a href="#"  data-toggle="dropdown" role="button" aria-expanded="false">
+                                    
+     {{ Html::image('storage/user/avatars/' . Auth::user()->image_url,
+                            '',
+                            ['class' => 'avatars'])
+     }}        
+                                
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -74,14 +63,87 @@
                             </li>
                         @endif
                     </ul>
+                                         
+                </div>
+
+
+
+                <div class="col-xs-12 col-sm-3">
+                    <h2 class="color-white font-default comeback-center">Hello {{Auth::user()->name}}</h2>
+                </div>
+                <div class="col-xs-12 col-sm-7">
+                    <p class="text-right margin-top-15 size-20 comeback-center">
+                        <a href="#"><i class="fa fa-envelope color-black "></i></a>
+                        <a href="#"><i class="fa fa-bell color-black "></i></a>
+                    </p>
                 </div>
             </div>
-        </nav>
+        </div>
 
-        @yield('content')
+        <div class="container-fluid  bg-default padding-0">
+            <div class="page-heading col-xs-12 col-sm-4 bg-white padding-0">
+                <h2 class="font-default text-center">{{ $title }}</h2>
+            </div>
+        </div>
+     
+
+        <div class="container-fluid">
+            @yield('content') 
+        </div>
+
+
+        <div class="footer-fixer"></div>
+
+
+
+        <div class="container-fluid fixed-menu  bg-default padding-0" id="menu-btn">
+            <div class="col-xs-12 col-sm-4 bg-dark menu-block padding-0" id="menu-block">
+                <h2  
+                    class="text-center font-default color-white"><i class="fa fa-cog color-black"></i> Setting</h2>
+                <div class=" close menu " id="modal">
+                  
+                    <div class=" modal-body bg-default color-white text-center  text-center settings-menu-body">
+                       @foreach ($navigation as $route)
+                        <div class="col-xs-12 padding-0 border-bottom-1  ">
+                            
+                            <h4 class="light gg">
+                                <a class="color-white " href="{{$route->uri()}}">
+                                    {{ $route->getName() }}
+                                </a>
+                            </h4>
+                        </div>
+                      @endforeach
+                        <div class="clearfix"></div>
+                    </div>
+                </div>  
+            </div>
+            <div class="col-xs-12 col-sm-8 bg-default  padding-0">
+                <form action="">
+                    <input type="text" class="form-control pull-right gg" placeholder="Customer 001" >
+                </form> 
+            </div>
+        </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('footer')
 </body>
 </html>

@@ -1,22 +1,19 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+require('./jquery-2.2.3.min.js');
 
-window.Vue = require('vue');
+$(document).ready(function(){
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+    $('#menu-btn').click(function(){
+        if($('#modal').hasClass('close')){
+            $('#modal').addClass('open');
+            $('#modal').removeClass('close');
+            $('#menu-block').css({"overflow":"inherit"});
 
-Vue.component('example', require('./components/Example.vue'));
+        }else{
+            $('#modal').addClass('close');
+            $('#modal').removeClass('open');
+            $('#menu-block').css({"overflow":"hidden"});    
+        }   
+    });
 
-const app = new Vue({
-    el: '#app'
 });
