@@ -12,5 +12,13 @@ const { mix } = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .sass('resources/assets/sass/guest_layout.scss', 'public/css');
+   .js('resources/assets/js/recipie.js', 'public/js')
+   .js('resources/assets/js/menu.js', 'public/js')
+   .js('resources/assets/js/bootstrap.js', 'public/js')
+   .js('resources/assets/js/socketio.js', 'public/js')
+   .js('resources/assets/js/socket.js', 'public/js')
+
+
+
+
+   .sass('resources/assets/sass/app.scss', 'public/css');

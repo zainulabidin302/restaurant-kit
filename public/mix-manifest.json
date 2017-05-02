@@ -1,5 +1,9 @@
 {
   "/js/app.js": "/js/app.js",
   "/css/app.css": "/css/app.css",
-  "/css/guest.layout.css": "/css/guest.layout.css"
+  "/js/bootstrap.js": "/js/bootstrap.js",
+  "/js/socketio.js": "/js/socketio.js",
+  "/js/socket.js": "/js/socket.js",
+  "/js/recipie.js": "/js/recipie.js",
+  "/js/menu.js": "/js/menu.js"
 }

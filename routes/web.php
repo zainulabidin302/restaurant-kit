@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/menu', 'MenuController@index')->name('menu');
+
+Route::resource('/orders', 'OrderController');
 
 Route::group(['middleware' => 'acl'], function() {
 
@@ -48,12 +51,36 @@ Route::group(['middleware' => 'acl'], function() {
             ]
         );
 
+        Route::resource('ingredients', 'IngredientController', [
+                'names' => ['index'  => 'Ingredients List'], 
+                'only' => ['index']
+            ]
+        );
+
+        Route::resource('recipies', 'RecipieController', [
+                'names' => ['index'  => 'Recipies List'], 
+                'only' => ['index']
+            ]
+        );
+
 
         Route::group(['group_name', 'no_index'], function() {
             Route::resource('users', 'UserController', [ 
                     'except' => ['index']
                 ]
             );
+
+            Route::resource('ingredients', 'IngredientController', [ 
+                    'except' => ['index']
+                ]
+            );
+
+            Route::resource('recipies', 'RecipieController', [ 
+                    'except' => ['index']
+                ]
+            );
+
+
         });
 
 

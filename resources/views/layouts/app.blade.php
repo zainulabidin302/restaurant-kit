@@ -25,11 +25,7 @@
         
         <div class="container-fluid bg-default sec">
             <div class="col-xs-12 col-sm-1">
-               
                     <!-- Left Side Of Navbar -->
-                 
-
-                    
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <!-- Authentication Links -->
@@ -68,46 +64,100 @@
 
 
 
-                <div class="col-xs-12 col-sm-3">
-                    <h2 class="color-white font-default comeback-center">Hello {{Auth::user()->name}}</h2>
+                <div class="col-xs-12 col-sm-2">
+                    <h2 class="color-white font-default comeback-center">Hello {{Auth::user()->name}} 
+                        <a href="#"><i class="fa fa-envelope color-black pull-right "></i></a>
+                        <a href="#"><i class="fa fa-bell color-black pull-right"></i></a>
+                    </h2>
+
+
                 </div>
-                <div class="col-xs-12 col-sm-7">
-                    <p class="text-right margin-top-15 size-20 comeback-center">
-                        <a href="#"><i class="fa fa-envelope color-black "></i></a>
-                        <a href="#"><i class="fa fa-bell color-black "></i></a>
-                    </p>
+                <div class="col-xs-12 col-sm-8 notification-header">
+
+
+                    <div id="new-notification-queue" class="col-lg-4">
+                        <h4>New Orders</h4>
+                        <ul>
+                            <li>Loading orders</li>
+                            
+                        </ul>
+                    </div>
+                    <div id="cooking-notification-queue" class="col-lg-4">
+                        <h4>Cooking</h4>
+                        <ul>
+                            <li>Loading orders</li>
+                        </ul>
+                    </div>
+
+                    <div id="ready-notification-queue" class="col-lg-4">
+                        <h4>Ready</h4>
+                        <ul>
+                            <li>Loading orders</li>
+                        </ul>
+                    </div>
+
+
+
+
+
                 </div>
             </div>
         </div>
 
-        <div class="container-fluid  bg-default padding-0">
-            <div class="page-heading col-xs-12 col-sm-4 bg-white padding-0">
-                <h2 class="font-default text-center">{{ $title }}</h2>
-            </div>
-        </div>
      
+                    <div class="container-fluid page-heading  bg-default padding-0">
+                            <h2 class="font-default text-center">{{ $title }}</h2>
+                        
+                    </div>
 
         <div class="container-fluid">
             @yield('content') 
         </div>
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="globalSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!--<h4 class="modal-title" id="myModalLabel">Search anything</h4>-->
+        <div class="form-group col-xs-10 col-xs-offset-1 ">
+        <input type="search" class="form-control" name="search" id="global-search-box" placeholder="Search Here" >
+            
+        </div>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-xs-11 col-xs-offset-1 ">
+                    After implementation, Search results will appear here. Stay tuned for updates.
+                </div>
+                </div>
+      </div>
+      <!--<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>-->
+    </div>
+  </div>
+</div>
         <div class="footer-fixer"></div>
 
 
 
-        <div class="container-fluid fixed-menu  bg-default padding-0" id="menu-btn">
+        <div class="container-fluid fixed-menu  bg-default padding-0" >
             <div class="col-xs-12 col-sm-4 bg-dark menu-block padding-0" id="menu-block">
                 <h2  
-                    class="text-center font-default color-white"><i class="fa fa-cog color-black"></i> Setting</h2>
-                <div class=" close menu " id="modal">
+                    class="text-center font-default color-white" id="menu-btn"><i class="fa fa-cog color-black"></i> Setting</h2>
+                <div class=" close menu " id="modal" >
                   
                     <div class=" modal-body bg-default color-white text-center  text-center settings-menu-body">
                        @foreach ($navigation as $route)
                         <div class="col-xs-12 padding-0 border-bottom-1  ">
                             
                             <h4 class="light gg">
-                                <a class="color-white " href="{{$route->uri()}}">
+                                <a class="color-white " href="/{{$route->uri()}}">
                                     {{ $route->getName() }}
                                 </a>
                             </h4>
@@ -117,9 +167,10 @@
                     </div>
                 </div>  
             </div>
+            
             <div class="col-xs-12 col-sm-8 bg-default  padding-0">
                 <form action="">
-                    <input type="text" class="form-control pull-right gg" placeholder="Customer 001" >
+                    <input type="text" class="form-control pull-right gg" placeholder="Start typing to search anything ..." data-toggle="modal" data-target="#globalSearchModal" >
                 </form> 
             </div>
         </div>
@@ -144,6 +195,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="http://localhost:8890/socket.io/socket.io.js"></script>
+    <script src="{{ asset('js/socket.js') }}"></script>
     @yield('footer')
 </body>
 </html>

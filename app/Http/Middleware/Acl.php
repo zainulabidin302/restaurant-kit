@@ -22,19 +22,19 @@ class Acl
         $route = \Route::current();
         $user  = \Auth::user();
         $routeAction = $route->getAction();
+        if (\Auth::check()) {
+            if (isset($routeAction['group_name'])) {
+                if ($routeAction['group_name'] == $user->roles[0]->title) {
+                    // if user is accessing the allowed route
+                    return $next($request);    
+                } else {
 
-        if (isset($routeAction['group_name'])) {
-            if ($routeAction['group_name'] == $user->roles[0]->title) {
-                // if user is accessing the allowed route
-                return $next($request);    
-            } else {
-
-                return redirect('/unauth');
-            }
-        } else {
-            return redirect('/');
+                    return redirect('/unauth');
+                }
+            } 
         }
-
+        
+        return redirect('/');
 
         
     }
