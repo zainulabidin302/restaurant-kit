@@ -72,35 +72,6 @@
 
 
                 </div>
-                <div class="col-xs-12 col-sm-8 notification-header">
-
-
-                    <div id="new-notification-queue" class="col-lg-4">
-                        <h4>New Orders</h4>
-                        <ul>
-                            <li>Loading orders</li>
-                            
-                        </ul>
-                    </div>
-                    <div id="cooking-notification-queue" class="col-lg-4">
-                        <h4>Cooking</h4>
-                        <ul>
-                            <li>Loading orders</li>
-                        </ul>
-                    </div>
-
-                    <div id="ready-notification-queue" class="col-lg-4">
-                        <h4>Ready</h4>
-                        <ul>
-                            <li>Loading orders</li>
-                        </ul>
-                    </div>
-
-
-
-
-
-                </div>
             </div>
         </div>
 
@@ -196,7 +167,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="http://localhost:8890/socket.io/socket.io.js"></script>
-    <script src="{{ asset('js/socket.js') }}"></script>
+    
     @yield('footer')
 </body>
 </html>

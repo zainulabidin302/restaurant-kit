@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,14 +38,17 @@ class OrderController extends Controller
         $order = new \App\Order();
         $uid = \Uuid::generate();
         $order->uuid = $uid;
+        $order->status = $this->STATUS['NEW'];
         $order->save();
+
         foreach($request->items as $row) {
             $orderItem = new \App\OrderItem();
             $orderItem->recipie()->associate($row['id']);
             $orderItem->quantity = $row['quantity'];
             $order->orderItems()->save($orderItem);
+            
         }
-       
+
         $redis = \LRedis::connection();
         $order->uuid = "$uid";
         $order_string = json_encode($order, true);
@@ -105,5 +109,13 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function update_status(Request $request)
+    {
+      $order = \App\Order::find($request['id']);
+      $order->status = $request['status'];
+      $d = \Carbon\Carbon::now();
+      $order->eta = $d->addMinutes($request['min']);
+      $order->save();
     }
 }

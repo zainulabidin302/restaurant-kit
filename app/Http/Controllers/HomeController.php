@@ -27,7 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $orders = \App\Order::whereIn(
+                'status', [$this->STATUS['NEW'], $this->STATUS['READY'], $this->STATUS['COOKING']])->get();
+        
+        return view('home', ['orders' => $orders]);
     }
 
 

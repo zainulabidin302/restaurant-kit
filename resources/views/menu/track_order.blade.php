@@ -72,7 +72,7 @@
                                 </tr>
                                 <tr>
                                     <th>Remaining Time for Cooking</th>
-                                    <td>None</td>
+                                    <td>{{$order->eta}}</td>
                                 </tr>
                                 <tr>
                                     <th>Remaining Time for Arrival</th>

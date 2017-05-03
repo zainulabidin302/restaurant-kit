@@ -10,7 +10,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+    public $STATUS = 
+    [
+        'NEW' => 1,
+        'COOKING' => 2,
+        'READY' => 3,
+        'SERVED' => 4 
+    ];
     public function __construct()
     {
      

@@ -454,22 +454,24 @@ table.table {
   }
 }
 
-#notification-queue {
-  
-  background: red;
-  
+.panel-body {
+  .order-queue {
+    li {
+      color: #000000;  
+    }
+    
+  }
 }
 
-.notification-header {
-  h4 {
-    color: white;
-    font-weight: bold;
+.mini-eta-form {
+  padding: 5px;
+  input {
+    margin-left: 2px;
   }
 
-  ul {
-    li {
-      list-style-type: none;
-      color: white;
-    }
+  button {
+    margin-left: 2px;
+    
   }
+
 }

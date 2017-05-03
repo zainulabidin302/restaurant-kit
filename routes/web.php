@@ -20,6 +20,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/menu', 'MenuController@index')->name('menu');
 
 Route::resource('/orders', 'OrderController');
+Route::post('/orders/status', 'OrderController@update_status' );
+
+
+
+
 
 Route::group(['middleware' => 'acl'], function() {
 
@@ -79,11 +84,7 @@ Route::group(['middleware' => 'acl'], function() {
                     'except' => ['index']
                 ]
             );
-
-
         });
-
-
     });
 
 
